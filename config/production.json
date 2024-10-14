@@ -1,4 +1,5 @@
 {
   "host": "blissbells-app.feathersjs.com",
-  "port": "PORT"
+  "port": "PORT",
+  "postgres": "postgresql://arvindsoft37@gmail.com:bZaonD59LQkK@ep-silent-flower-a5rswffe.us-east-2.aws.neon.tech/blissbells?sslmode=require"
 }
