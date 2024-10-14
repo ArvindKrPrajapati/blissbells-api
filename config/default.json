@@ -10,15 +10,14 @@
     "entity": "user",
     "service": "users",
     "secret": "NG394DRECKmBo+vXoffjF+tBLGk=",
-    "authStrategies": ["jwt", "local"],
+    "authStrategies": ["jwt", "local", "google"],
     "jwtOptions": {
       "header": {
         "typ": "access"
       },
       "audience": "https://yourdomain.com",
       "issuer": "feathers",
-      "algorithm": "HS256",
-      "expiresIn": "1d"
+      "algorithm": "HS256"
     },
     "local": {
       "usernameField": "email",
