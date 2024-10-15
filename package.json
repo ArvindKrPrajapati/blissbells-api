@@ -29,7 +29,8 @@
     "dev": "ts-node-dev --no-notify src/",
     "start": "npm run compile && node lib/",
     "mocha": "mocha --require ts-node/register --require source-map-support/register \"test/**/*.ts\" --recursive --exit",
-    "compile": "shx rm -rf lib/ && tsc"
+    "compile": "shx rm -rf lib/ && tsc",
+    "deploy": "pm2 restart blissbells-api"
   },
   "standard": {
     "env": [
