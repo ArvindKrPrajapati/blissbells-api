@@ -32,6 +32,18 @@ export default function (app: Application): typeof Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      notification: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+      description: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       hooks: {
