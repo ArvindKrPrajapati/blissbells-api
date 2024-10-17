@@ -24,5 +24,10 @@
       "passwordField": "password"
     }
   },
-  "postgres": "postgres://postgres:postgres$@localhost:5432/blissbells-dev"
+  "postgres": "postgres://postgres:postgres$@localhost:5432/blissbells-dev",
+  "env": "development",
+  "website": {
+    "url": "https://blissbells.vercel.app",
+    "name": "Blissbells"
+  }
 }

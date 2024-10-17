@@ -2,6 +2,7 @@
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 import { BadRequest } from "@feathersjs/errors";
 import { Hook, HookContext } from "@feathersjs/feathers";
+import { indiaDateTime } from "../common/common";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default (options = {}): Hook => {
@@ -43,12 +44,9 @@ export default (options = {}): Hook => {
       env === "development"
         ? 222222
         : Math.floor(100000 + Math.random() * 900000);
-    const currentDate = new Date();
-    const otp_validity = new Date(currentDate);
-    otp_validity.setDate(currentDate.getMinutes() + 10);
 
     context.data.otp = otp;
-    context.data.otp_validity = otp_validity;
+    context.data.otp_validity = indiaDateTime().add(10, "minutes");
 
     return context;
   };

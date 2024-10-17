@@ -10,7 +10,8 @@ import { expressOauth, OAuthStrategy } from "@feathersjs/authentication-oauth";
 import { Application } from "./declarations";
 import * as jwt from "jsonwebtoken";
 import { BadRequest } from "@feathersjs/errors";
-import { indiaDateTime } from "./common/common";
+import { indiaDateTime, sendEmail } from "./common/common";
+import { welcomeTemp } from "./common/templates";
 
 declare module "./declarations" {
   interface ServiceTypes {
@@ -25,7 +26,7 @@ class GoogleStrategy extends OAuthStrategy {
   ) {
     let res = {
       authentication: { strategy: this.name || "google" },
-      user: {},
+      user: { name: "", email: "" },
     };
     const decodedToken: any = jwt.decode(authentication.access_token, {
       complete: true,
@@ -69,6 +70,11 @@ class GoogleStrategy extends OAuthStrategy {
       } else {
         res.user = await this.app?.service("users")._create(userPayload);
       }
+      sendEmail(
+        welcomeTemp(res.user?.name),
+        res.user.email,
+        `Welcome to ${this.app?.get("website").name}`,
+      );
     }
     return res;
   }
@@ -131,6 +137,11 @@ class CustomLocalStrategy extends LocalStrategy {
               otp: null,
               otp_validity: null,
             });
+            sendEmail(
+              welcomeTemp(newUser.name),
+              newUser.email,
+              `Welcome to ${this.app?.get("website").name}`,
+            );
             return {
               authentication: { strategy: this.name },
               user: await this.getEntity(newUser, params),
